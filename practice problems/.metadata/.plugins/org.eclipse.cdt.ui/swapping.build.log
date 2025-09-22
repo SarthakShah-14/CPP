@@ -1,0 +1,33 @@
+14:33:20 **** Incremental Build of configuration Debug for project swapping ****
+make all 
+Building file: ../swapping.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"swapping.d" -MT"swapping.o" -o "swapping.o" "../swapping.cpp"
+../swapping.cpp:13:1: error: ‘cout’ does not name a type
+   13 | cout<<"Enter n";
+      | ^~~~
+../swapping.cpp:14:1: error: ‘cin’ does not name a type
+   14 | cin>>n;
+      | ^~~
+../swapping.cpp:16:10: error: invalid use of non-static data member ‘swapp::n’
+   16 |  int arr[n],temp;
+      |          ^
+../swapping.cpp:11:6: note: declared here
+   11 |  int n;
+      |      ^
+../swapping.cpp: In member function ‘void swapp::swapping()’:
+../swapping.cpp:19:8: error: ‘arr’ was not declared in this scope
+   19 |   temp=arr[0];
+      |        ^~~
+../swapping.cpp: In function ‘int main()’:
+../swapping.cpp:34:17: error: ‘n’ was not declared in this scope
+   34 |   for(int i=0;i<n;i++)
+      |                 ^
+../swapping.cpp:36:11: error: ‘class swapp’ has no member named ‘arr’
+   36 |   cin>>s1.arr[i];
+      |           ^~~
+make: *** [subdir.mk:20: swapping.o] Error 1
+"make all" terminated with exit code 2. Build might be incomplete.
+
+14:33:20 Build Failed. 7 errors, 0 warnings. (took 361ms)
+

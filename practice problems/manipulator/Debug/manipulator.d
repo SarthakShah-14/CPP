@@ -1,0 +1,1 @@
+manipulator.o: ../manipulator.cpp

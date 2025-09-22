@@ -1,0 +1,20 @@
+/*
+ * inheritance.cpp
+ *
+ *  Created on: 05-Aug-2024
+ *      Author: root
+ */
+#include<iostream>
+using namespace std;
+class B{
+	int a;//private  not inheritable
+public:
+	int b;
+	void set_ab();
+	int get_a();
+	void show_a();
+
+};
+
+
+

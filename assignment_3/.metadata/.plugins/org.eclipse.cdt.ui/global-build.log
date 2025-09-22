@@ -1,0 +1,12 @@
+13:41:46 **** Incremental Build of configuration Debug for project p3 ****
+make all 
+Building file: ../p3.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"p3.d" -MT"p3.o" -o "p3.o" "../p3.cpp"
+Finished building: ../p3.cpp
+ 
+Building target: p3
+Invoking: GCC C++ Linker
+g++  -o "p3"  ./p3.o   
+Finished building target: p3
+ 

@@ -1,0 +1,182 @@
+/*
+ * p7.cpp
+ *
+ *  Created on: 31-Aug-2024
+ *      Author: root
+ */
+#include <iostream>
+#include <string>
+#include <ctime>
+using namespace std;
+
+class Calendar {
+private:
+    int day, month, year;
+
+    bool isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+
+    int daysInMonth(int month, int year) {
+        int days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        if (month == 2 && isLeapYear(year)) {
+            return 29;
+        }
+        return days[month - 1];
+    }
+
+    bool isValidDate(int d, int m, int y) {
+        return (m >= 1 && m <= 12 && d >= 1 && d <= daysInMonth(m, y));
+    }
+
+public:
+    Calendar(int d, int m, int y) {
+        if (isValidDate(d, m, y)) {
+            day = d;
+            month = m;
+            year = y;
+        } else {
+            cout << "Invalid date provided! Setting default date to 01/01/2000." << endl;
+            day = 1;
+            month = 1;
+            year = 2000;
+        }
+    }
+
+    void displayDate() {
+        cout << "Current Date: " << day << "/" << month << "/" << year << endl;
+    }
+
+    void addDays(int daysToAdd) {
+        day += daysToAdd;
+        while (day > daysInMonth(month, year)) {
+            day -= daysInMonth(month, year);
+            month++;
+            if (month > 12) {
+                month = 1;
+                year++;
+            }
+        }
+    }
+
+    void subtractDays(int daysToSubtract) {
+        day -= daysToSubtract;
+        while (day < 1) {
+            month--;
+            if (month < 1) {
+                month = 12;
+                year--;
+            }
+            day += daysInMonth(month, year);
+        }
+    }
+
+    int differenceInDays(const Calendar& other) {
+        struct tm a = {0,0,0, day, month-1, year-1900};
+        struct tm b = {0,0,0, other.day, other.month-1, other.year-1900};
+        time_t x = mktime(&a);
+        time_t y = mktime(&b);
+        return difftime(y, x) / (60 * 60 * 24);
+    }
+
+    string getDayOfWeek() {
+        struct tm time_in = { 0, 0, 0, day, month - 1, year - 1900 };
+        time_t time_temp = mktime(&time_in);
+
+        const char* days[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+        return days[localtime(&time_temp)->tm_wday];
+    }
+
+    void setDate(int d, int m, int y) {
+        if (isValidDate(d, m, y)) {
+            day = d;
+            month = m;
+            year = y;
+        } else {
+            cout << "Invalid date provided! Date not changed." << endl;
+        }
+    }
+};
+
+int main() {
+    int d, m, y;
+    cout << "Enter initial date (dd mm yyyy): ";
+    cin >> d >> m >> y;
+
+    Calendar cal(d, m, y);
+
+    int choice;
+    do {
+        cout << "\nMenu:\n";
+        cout << "1. Display Date\n";
+        cout << "2. Add Days\n";
+        cout << "3. Subtract Days\n";
+        cout << "4. Difference in Days\n";
+        cout << "5. Get Day of the Week\n";
+        cout << "6. Set New Date\n";
+        cout << "0. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cal.displayDate();
+                break;
+
+            case 2: {
+                int daysToAdd;
+                cout << "Enter number of days to add: ";
+                cin >> daysToAdd;
+                cal.addDays(daysToAdd);
+                cout << "Date after adding days: ";
+                cal.displayDate();
+                break;
+            }
+
+            case 3: {
+                int daysToSubtract;
+                cout << "Enter number of days to subtract: ";
+                cin >> daysToSubtract;
+                cal.subtractDays(daysToSubtract);
+                cout << "Date after subtracting days: ";
+                cal.displayDate();
+                break;
+            }
+
+            case 4: {
+                int d2, m2, y2;
+                cout << "Enter the other date (dd mm yyyy): ";
+                cin >> d2 >> m2 >> y2;
+                Calendar otherDate(d2, m2, y2);
+                cout << "Difference in days: " << cal.differenceInDays(otherDate) << " days" << endl;
+                break;
+            }
+
+            case 5:
+                cout << "Day of the week: " << cal.getDayOfWeek() << endl;
+                break;
+
+            case 6: {
+                int newD, newM, newY;
+                cout << "Enter new date (dd mm yyyy): ";
+                cin >> newD >> newM >> newY;
+                cal.setDate(newD, newM, newY);
+                cout << "New date set: ";
+                cal.displayDate();
+                break;
+            }
+
+            case 0:
+                cout << "Exiting program." << endl;
+                break;
+
+            default:
+                cout << "Invalid choice! Please try again." << endl;
+                break;
+        }
+    } while (choice != 0);
+
+    return 0;
+}
+
+

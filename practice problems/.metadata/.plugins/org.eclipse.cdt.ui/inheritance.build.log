@@ -1,0 +1,6 @@
+16:44:23 **** Incremental Build of configuration Debug for project inheritance ****
+make all 
+make: Nothing to be done for 'all'.
+
+16:44:23 Build Finished. 0 errors, 0 warnings. (took 163ms)
+

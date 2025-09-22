@@ -1,0 +1,1 @@
+inline.o: ../inline.cpp

@@ -1,0 +1,150 @@
+/*
+ * p4.cpp
+ *
+ *  Created on: 16-Oct-2024
+ *      Author: root
+ */
+#include<iostream>
+#include<string>
+using namespace std;
+
+class bill
+{
+	public:
+	int bnum;
+	string cname;
+	string cphone;
+	string date;
+
+
+	bill(int bn,string cn,string cp,string da)
+	{
+		bnum=bn;
+		cname=cn;
+		cphone=cp;
+		date=da;
+	}
+
+	void display()
+	{
+		cout<<endl;
+		cout<<"|-----------------------------------------------------------------------------------------|"<<endl;
+		cout<<"|                                    D-MART                                         |"<<endl;
+		cout<<"|                                MO:(0261)1526 96584                                      |"<<endl;
+		cout<<"|-----------------------------------------------------------------------------------------|"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|-----------------------------------------------------------------------------------------|"<<endl;
+		cout<<"|   Name      : "<<cname<<"                                              |    Bill No:"<<bnum<<"        |"<<endl;
+		cout<<"|-----------------------------------------------------------------------------------------|"<<endl;
+		cout<<"|   Mobile no.: "<<cphone<<"                                         |  Date:"<<date<<"     |"<<endl;
+		cout<<"|-----------------------------------------------------------------------------------------|"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+
+	}
+};
+
+class item
+{
+	public:
+	int no;
+	string iname;
+	int quantity;
+	float price;
+	float amount;
+
+
+	item(int n,string in,int qua,float pri)
+	{
+		no=n;
+		iname=in;
+		quantity=qua;
+		price=pri;
+
+	}
+
+
+
+	void display()
+	{
+		amount=quantity*price;
+		cout<<"|-----------------------------------------------------------------------------------------|"<<endl;
+		cout<<"| SL No. |       Description          |  Qty  |      Rate     |      Amount               |"<<endl;
+		cout<<"|-----------------------------------------------------------------------------------------|"<<endl;
+		cout<<"|   "<<no<<"    |  "<<iname<<"   |   "<<quantity<<"  |    "<<price<<"        |       "<<amount<<"                |"<<endl;
+		cout<<"|-----------------------------------------------------------------------------------------|"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                                                         |"<<endl;
+
+
+
+	}
+
+};
+
+class tax : public bill, public item
+{
+	public:
+	float cgst;
+	float sgst;
+	float total;
+	float a;
+	float b;
+
+
+	tax(int bn,string cn,string cp,string da,int n,string in,int qua,float pri,float cg,float sg):bill(bn,cn,cp,da),item(n,in,qua,pri)
+	{
+			cgst=cg;
+			sgst=sg;
+	}
+
+
+
+
+
+	void display()
+	{
+		bill::display();
+		item::display();
+		a=amount*cgst/100;
+		b=amount*sgst/100;
+		total=amount+a+b;
+
+		cout<<"|                                                                                         |"<<endl;
+		cout<<"|                                                |------------------|---------------------|"<<endl;
+		cout<<"|                                                |     CGST         |           "<<a<<"    |"<<endl;
+		cout<<"|                                                |------------------|---------------------|"<<endl;
+		cout<<"|                                                |     sGST         |           "<<b<<"    |"<<endl;
+		cout<<"|                                                |------------------|---------------------|"<<endl;
+		cout<<"|                                                |     Total        |           "<<total<<"    |"<<endl;
+		cout<<"|                                                |------------------|---------------------|"<<endl;
+		cout<<"|-----------------------------------------------------------------------------------------|"<<endl;
+
+
+	}
+
+};
+
+int main()
+{
+	tax generateBill(10, "Mann", "000000000", "13/08/2022", 1, "Cadbury dairy milk silk", 10, 250, 2.5, 2.5);
+
+	generateBill.display();
+
+
+	return 0;
+}
+
+
+

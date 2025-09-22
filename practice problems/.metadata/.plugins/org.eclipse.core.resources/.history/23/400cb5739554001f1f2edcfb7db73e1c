@@ -1,0 +1,17 @@
+/*
+ * multilevel_inheritance.cpp
+ *
+ *  Created on: 07-Aug-2024
+ *      Author: root
+ */
+#include<iostream>
+using namespace std;
+class student{
+	protected:
+	int roll_no;
+	public:
+	void get_
+};
+
+
+

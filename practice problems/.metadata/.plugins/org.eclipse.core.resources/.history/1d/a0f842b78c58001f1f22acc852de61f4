@@ -1,0 +1,34 @@
+/*
+ * multilevel_inheritance.cpp
+ *
+ *  Created on: 07-Aug-2024
+ *      Author: root
+ */
+#include<iostream>
+using namespace std;
+class student{
+	protected:
+	int roll_no;
+	public:
+	void get_number(int a);
+	void put_number();
+
+};
+class test:public student://first level derivation
+{
+protected:
+	float sub1,sub2;
+public:
+	void get_marks(float,float);
+	void put_marks();
+}
+class result:public test//second level derivation
+{
+	float total;
+public:
+	void display();
+
+};
+
+
+

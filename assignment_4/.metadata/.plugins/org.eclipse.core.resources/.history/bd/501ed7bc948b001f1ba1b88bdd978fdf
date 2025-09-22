@@ -1,0 +1,102 @@
+/*
+ * p2.cpp
+ *
+ *  Created on: 16-Oct-2024
+ *      Author: root
+ */
+
+#include<iostream>
+using namespace std;
+class patient
+{
+protected:
+	int id,age;
+	char name[50];
+	char gender[10];
+
+public:
+	void insert()
+	{
+		cout<<"\n Enter ID of patient:";
+		cin>>id;
+		cout<<"\n Enter name of patient:";
+		cin>>name;
+		cout<<"\n Enter age of patient:";
+		cin>>age;
+		cout<<"\n Enter Gender:";
+		cin>>gender;
+	}
+	void display()
+	{
+		cout<<"\n ID :"<<id;
+		cout<<"\n Name:"<<name;
+		cout<<"\n Age:"<<age;
+		cout<<"\n Gender:"<<gender;
+	}
+};
+class ipd
+{
+protected:
+	int ward_no;
+	int bed_no;
+	int charge_per_day;
+public:
+	void insertinfo(){
+	cout<<"\n Enter wardno:";
+	cin>>ward_no;
+	cout<<"\n Enter bed no:";
+	cin>>bed_no;
+	cout<<"\n Enter charge per day:";
+	cin>>charge_per_day;
+	}
+	void displayinfo()
+	{
+		cout<<"\n  ward no:"<<ward_no;
+		cout<<"\n  bed no:"<<bed_no;
+		cout<<"\ncharge per day:"<<charge_per_day;
+	}
+};
+class ipd_patient:public patient,public ipd
+{
+protected:
+	int no_of_days_admited;
+
+public:
+	void in_sert()
+	{
+		patient details();
+		insert();
+		insertinfo();
+
+		cout<<"\n Enter no.of day admited:";
+		cin>>no_of_days_admited;
+	}
+	void displaydetails()
+	{
+		display();
+		displayinfo();
+
+		cout<<"\n -----------------------";
+		cout<<"\n no.of days admitted:"<<no_of_days_admited;
+	}
+};
+int main()
+{
+	int i,cnt;
+	cout<<"\n \n Enter no. of patient details you want:";
+	cin>>cnt;
+
+	ipd_patient ipdt[cnt];
+	for(i=0;i<cnt;i++)
+	{
+		ipdt[i].in_sert();
+		ipdt[i].displaydetails();
+	}
+	return 0;
+}
+
+
+
+
+
+

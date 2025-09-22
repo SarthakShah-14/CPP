@@ -1,0 +1,55 @@
+/*
+ * p1.cpp
+ *
+ *  Created on: 16-Oct-2024
+ *      Author: root
+ */
+
+#include<iostream>
+using namespace std;
+class vehicle
+{
+
+public:
+	int no;
+	string company;
+};
+class two_wheelar : public vehicle
+{
+   public:
+	float distance,mileage;
+
+	   void operator >>(istream &mycin)
+	   {
+		   cout<<"enter vehicle number:";
+		   mycin>>no;
+		   cout<<"enter vehicle company:";
+		   mycin>>company;
+		   cout<<"enter two-wheelar distance:";
+		   mycin>>distance;
+		   cout<<"enter two-wheelar mileage:";
+		   mycin>>mileage;
+	   }
+
+};
+
+class two_wheelar_info : public two_wheelar
+{
+   public:
+	   void operator <<(ostream &mycout)
+	   {
+		   mycout<<endl;
+		   mycout<<no<<"\t"<<company<<"\t"<<distance<<"\t"<<mileage;;
+	   }
+};
+
+int main()
+{
+	two_wheelar_info v1;
+	v1 >> cin;
+	v1 << cout;
+	return 0;
+}
+
+
+

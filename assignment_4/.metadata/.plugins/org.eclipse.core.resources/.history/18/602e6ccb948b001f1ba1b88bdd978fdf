@@ -1,0 +1,86 @@
+/*
+ * p3.cpp
+ *
+ *  Created on: 16-Oct-2024
+ *      Author: root
+ */
+
+
+#include<iostream>
+using namespace std;
+
+class person
+{
+	public:
+	int id;
+	string name;
+	int age;
+
+	person(int i,string n,int a)
+	{
+		id=i;
+		name=n;
+		age=a;
+	}
+
+	void display()
+	{
+		cout<<"------------Employee Details-----------"<<endl<<endl;
+		cout<<"Emplyee id   : "<<id<<endl;
+		cout<<"Emplyee name : "<<name<<endl;
+		cout<<"Emplyee age  : "<<age<<endl;
+	}
+
+};
+
+class employee
+{
+	public:
+	string designation;
+	int salary;
+
+	employee(string des,int sal)
+	{
+		designation=des;
+		salary=sal;
+	}
+
+	void display()
+	{
+		cout<<"Emplyee designation  : "<<designation<<endl;
+		cout<<"Emplyee salary       : "<<salary<<endl;
+	}
+};
+
+class experience: public person ,public employee
+{
+	public:
+	string experienc;
+
+	experience(int i,string n,int a,string des,int sal,string exp) : person(i,n,a),employee(des,sal)
+	{
+		experienc=exp;
+	}
+
+	void display()
+	{
+		person::display();
+		employee::display();
+		cout<<"Emplyee experience   : "<<experienc<<endl<<endl;
+		cout<<"--------------------------------------\n";
+	}
+};
+
+
+int main()
+{
+	experience emp(1020,"Rohit Sharma",30,"Manager",82000,"3 year");
+	emp.display();
+
+	return 0;
+}
+
+
+
+
+
